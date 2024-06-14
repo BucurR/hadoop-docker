@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
+
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
 RUN gpg --import KEYS

@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 services:
   namenode:
@@ -24,14 +24,13 @@ services:
         constraints:
           - node.role == manager
 
+
   datanode:
     image: asergiu/ubb:hadoop-datanode
     networks:
       - hadoop
     volumes:
-      - type: volume
-        source: datanode
-        target: /hadoop-data/dfs/data
+      - datanode:/hadoop-data/dfs/data
     ports:
       - 9864:9864
     env_file:
@@ -79,6 +78,7 @@ services:
       restart_policy:
         condition: on-failure
 
+
   historyserver:
     image: asergiu/ubb:hadoop-historyserver
     networks:
@@ -98,6 +98,7 @@ services:
         constraints:
           - node.role == manager
 
+
 volumes:
   datanode:
   namenode:
@@ -105,4 +106,4 @@ volumes:
 
 networks:
   hadoop:
-    driver: overlay
+    external: true
